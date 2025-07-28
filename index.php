@@ -38,8 +38,13 @@ require_once 'veritabani.php';
 
     $sorgu = $pdo->query("SELECT * FROM mesajlar ORDER BY tarih DESC");
     foreach ($sorgu as $satir) {
-        echo "<p><strong>" . htmlspecialchars($satir['isim']) . "</strong>: " . nl2br(htmlspecialchars($satir['mesaj'])) . "<br><small>" . $satir['tarih'] . "</small></p><hr>";
-    }
+    echo "<p><strong>" . htmlspecialchars($satir['isim']) . "</strong>: " . nl2br(htmlspecialchars($satir['mesaj'])) . "<br>
+    <small>" . $satir['tarih'] . "</small><br>
+    <a href='duzenle.php?id=" . $satir['id'] . "'>Düzenle</a> | 
+    <a href='sil.php?id=" . $satir['id'] . "' onclick='return confirm(\"Silmek istediğine emin misin?\");'>Sil</a>
+    </p><hr>";
+}
+
     ?>
 </body>
 </html>

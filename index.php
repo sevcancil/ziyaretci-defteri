@@ -1,4 +1,11 @@
-<?php require_once 'veritabani.php'; ?>
+<?php
+session_start();
+if (!isset($_SESSION['giris'])) {
+    header("Location: login.php");
+    exit;
+}
+require_once 'veritabani.php';
+?>
 
 <!DOCTYPE html>
 <html lang="tr">
@@ -11,6 +18,7 @@
     <h1>Ziyaretçi Defteri</h1>
 
     <form method="POST">
+        <p>Hoş geldin, <?php echo $_SESSION['kullanici_adi']; ?> | <a href="logout.php">Çıkış yap</a></p>
         <input type="text" name="isim" placeholder="Adınız" required><br><br>
         <textarea name="mesaj" placeholder="Mesajınız" required></textarea><br><br>
         <button type="submit">Gönder</button>
